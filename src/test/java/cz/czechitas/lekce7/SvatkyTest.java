@@ -39,8 +39,11 @@ class SvatkyTest {
     @Test
     void jeVSeznamu() {
         //test ma mit tri casti: 1)Arrange 2)Act 3)Assert- porovnam podminky
+        //Otestovat, že najde v seznamu existující jméno a nenajde neexistující jméno
+
         //Arrange
         Svatky svatky = new Svatky();
+
         String jmenoJeVSeznamu = "Alexej";
         String jmenoNeniVSeznamu = "Adam";
 
@@ -49,9 +52,8 @@ class SvatkyTest {
         boolean resaultNeniVSeznamu = svatky.jeVSeznamu(jmenoNeniVSeznamu);
 
         //Assert
-        assertTrue(resaultJeVSeznamu, "Ocekavali jsme ze" + jmenoJeVSeznamu + "je v seznamu jmen");
-        assertFalse(resaultNeniVSeznamu, "Ocekavali jsme ze" + jmenoNeniVSeznamu + "je v seznamu jmen");
-        //TODO Otestovat, že najde v seznamu existující jméno a nenajde neexistující jméno
+        assertTrue(resaultJeVSeznamu, "Ocekavali jsme ze " + jmenoJeVSeznamu + " je v seznamu jmen");
+        assertFalse(resaultNeniVSeznamu, "Ocekavali jsme ze " + jmenoNeniVSeznamu + " neni v seznamu jmen");
     }
 
     /**
@@ -68,9 +70,9 @@ class SvatkyTest {
         svatky.pridejSvatek("Marie", 8, 9);
         svatky.pridejSvatek("Petr", 29, 6);
 
-        assertEquals(pocetJmen + 3, svatky.getPocetJmen(), "Počet jmen by měl být o 3 větší");
+        assertEquals(37 + 3, svatky.getPocetJmen(), "Počet jmen by měl být o 3 větší");
 
-        //TODO Otestovat, že vrací počet jmen, která máme v seznamu
+        //Otestovat, že vrací počet jmen, která máme v seznamu
     }
 
     /**
@@ -87,7 +89,7 @@ class SvatkyTest {
         Set<String> seznamJmen = svatky.getSeznamJmen();
 
         assertEquals(svatky.getPocetJmen(), seznamJmen.size(), "Seznam jmen by měl mít stejný počet položek jako celkový počet jmen");
-        //TODO Zkontrolovat, že seznam jmen má správný počet položek.
+        //Zkontrolovat, že seznam jmen má správný počet položek.
     }
 
     /**
@@ -96,6 +98,7 @@ class SvatkyTest {
     @Test
     void pridejSvatekDenMesicInt() {
         Svatky svatky = new Svatky();
+        assertFalse(svatky.jeVSeznamu("NovýSvátek"));
 
         svatky.pridejSvatek("NovýSvátek", 1, 1);
 
@@ -104,7 +107,7 @@ class SvatkyTest {
         assertEquals(MonthDay.of(1, 1), svatky.vratKdyMaSvatek("NovýSvátek"));
     }
 
-    //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
+    //Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
 
 
     /**
@@ -113,6 +116,7 @@ class SvatkyTest {
     @Test
     void pridrejSvatekDenMesicMonth() {
         Svatky svatky = new Svatky();
+        assertFalse(svatky.jeVSeznamu("NovýSvátek"));
 
         svatky.pridejSvatek("NovýSvátek", 1, Month.JANUARY);
 
@@ -120,7 +124,7 @@ class SvatkyTest {
 
         assertEquals(MonthDay.of(1, 1), svatky.vratKdyMaSvatek("NovýSvátek"));
 
-        //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
+        //Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     }
 
     /**
@@ -129,13 +133,14 @@ class SvatkyTest {
     @Test
     void pridejSvatekMonthDay() {
         Svatky svatky = new Svatky();
+        assertFalse(svatky.jeVSeznamu("NovýSvátek"));
 
         svatky.pridejSvatek("NovýSvátek", MonthDay.of(1,1));
 
         assertTrue(svatky.jeVSeznamu("NovýSvátek"));
 
         assertEquals(MonthDay.of(1, 1), svatky.vratKdyMaSvatek("NovýSvátek"));
-        //TODO Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
+        //Otestuje, že je jméno v seznamu svátků a že má přiřazen správný den
     }
 
     /**
@@ -156,6 +161,6 @@ class SvatkyTest {
         int novyPocetJmen = svatky.getPocetJmen();
 
         assertEquals(puvodniPocetJmen - 1, novyPocetJmen, "Pocet puvodnich jmen bude po smazani jednoho jmena stejny jako nový počet jmen.");
-        //TODO Zkontrolovat, že po smazání bude počet svátků odpovídat novému počtu.
+        //Zkontrolovat, že po smazání bude počet svátků odpovídat novému počtu.
     }
 }
